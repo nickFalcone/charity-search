@@ -6,6 +6,7 @@ import MOCK from './mock';
 const Search = () => {
   const [searchTerm, updateSearch] = useState('');
   const [charities, setCharities] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [rating, RatingSelect] = useSelect('Rating', 1, [
     {
       key: 'Rated',
@@ -26,8 +27,10 @@ const Search = () => {
    * @return {Promise} response
    */
   async function getCharities(searchTerm, rating, mock) {
+    setLoading(true);
     if (mock) {
       setCharities(MOCK);
+      setLoading(false);
     } else {
       fetch(
         `https://charity-search-303800.ue.r.appspot.com/?search=${searchTerm}&rated=${rating}`
@@ -36,9 +39,11 @@ const Search = () => {
         .then(
           (charities) => {
             setCharities(charities);
+            setLoading(false);
           },
           (error) => {
             console.error(error);
+            setLoading(false);
           }
         );
     }
@@ -62,7 +67,8 @@ const Search = () => {
           />
         </label>
         <RatingSelect />
-        <button>Submit</button>
+        {/* Prevent multiple submissions if the response is still loading */}
+        <button disabled={loading}>Submit</button>
       </form>
       <p>
         {charities.length} result{charities.length === 1 ? '' : 's'}
