@@ -22,6 +22,7 @@ const Search = () => {
    * Return charities from the Charity Navigator API
    *
    * @param {string} searchTerm - string of text to search
+   * @param {number} rating - 1: only return rated charities; 0: return all charities
    * @param {boolean} [mock=false] - flag to mock API response
    *
    * @return {Promise} response
@@ -51,28 +52,29 @@ const Search = () => {
 
   return (
     <div className="search-params">
+      <h1 className="search-cta">Search 501(c)(3) charities</h1>
+
       <form
+        className="search-form"
         onSubmit={(event) => {
           event.preventDefault();
-          getCharities(searchTerm, rating);
+          // getCharities(searchTerm, rating, true); // mock response
+          getCharities(searchTerm, rating); // response from API
         }}
       >
         <label htmlFor="searchTerm">
-          Search
           <input
             id="searchTerm"
+            className="search-input"
             value={searchTerm}
             placeholder="humane society"
             onChange={(event) => updateSearch(event.target.value)}
           />
         </label>
         <RatingSelect />
-        {/* Prevent multiple submissions if the response is still loading */}
-        <button disabled={loading}>Submit</button>
+        {/* Prevent submissions if empty search term or if the response is still loading */}
+        <button disabled={loading || searchTerm === ''}>Submit</button>
       </form>
-      <p>
-        {charities.length} result{charities.length === 1 ? '' : 's'}
-      </p>
       <Results charities={charities} />
     </div>
   );

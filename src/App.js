@@ -6,10 +6,6 @@ import Search from './Search';
 const App = () => {
   return (
     <div>
-      <header>{/* <Link to="/">Home</Link> */}</header>
-      {/* <Router>
-        <Search path="/" />
-      </Router> */}
       <Search />
     </div>
   );

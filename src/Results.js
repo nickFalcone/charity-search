@@ -3,10 +3,11 @@ import Charity from './Charity';
 
 const Results = (data) => {
   return (
-    <div className="search">
-      {!data.charities.length ? (
-        <h1>Search 501(c)(3) charities</h1>
-      ) : (
+    <div className="search-results" aria-live="polite">
+      <p className="search-results-count">
+        {data.charities.length} result{data.charities.length === 1 ? '' : 's'}
+      </p>
+      {data.charities.length ? (
         data.charities.map((charity) => {
           return (
             <Charity
@@ -24,6 +25,8 @@ const Results = (data) => {
             />
           );
         })
+      ) : (
+        <span></span>
       )}
     </div>
   );

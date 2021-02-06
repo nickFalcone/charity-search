@@ -1,0 +1,108 @@
+html,
+body {
+  background-color: #cacaca;
+  margin: 0;
+  padding: 0;
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+/* FONTS */
+
+.search-cta,
+.charity-name {
+  font-family: 'Roboto', sans-serif;
+}
+
+footer,
+.search-results-count,
+.charity-cause,
+.charity-location,
+.charity-mission,
+.search-params,
+input,
+select,
+button {
+  font-family: 'Open Sans', sans-serif;
+}
+
+/* STYLES */
+
+.search-cta {
+  margin: 10px 0 0 0;
+}
+
+.search-params {
+  max-width: 768px;
+  margin: 0 auto;
+}
+
+.search-results {
+  margin-left: 25px;
+}
+
+.search-results-count {
+  text-align: right;
+}
+
+.search-input {
+  width: 98%;
+  max-width: 600px;
+  padding: 10px 20px;
+  margin: 20px 0;
+  border: none;
+  border-radius: 25px;
+}
+
+.search-input:focus {
+  outline: 0;
+  box-shadow: 0 0 10px #313131;
+}
+
+.rating-group {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.use-select-rating {
+  margin: 0 20px;
+}
+
+.charity-link {
+  text-decoration: none;
+  background-color: #dadada;
+  color: #333;
+  display: block;
+  border: 2px solid #707070;
+  border-radius: 20px;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 768px;
+  transition: all 0.25s;
+}
+
+.charity-link:hover,
+.charity-link:focus {
+  background-color: #fff;
+  outline: 0;
+  box-shadow: 0 0 10px #5d5d5d;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  display: block;
+  width: 100%;
+  padding: 10px 0;
+  color: #e6e6e6;
+  background-color: #131313;
+  text-align: center;
+}
+
+footer a {
+  color: #e6e6e6;
+  text-decoration: underline;
+}
