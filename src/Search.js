@@ -63,6 +63,7 @@ const Search = () => {
         }}
       >
         <label htmlFor="searchTerm">
+          <span className="ada-hidden">Search</span>
           <input
             id="searchTerm"
             className="search-input"
