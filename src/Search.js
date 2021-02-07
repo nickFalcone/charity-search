@@ -51,31 +51,33 @@ const Search = () => {
   }
 
   return (
-    <div className="search-params">
-      <h1 className="search-cta">Search 501(c)(3) charities</h1>
+    <div className="wrap">
+      <div className="search">
+        <h1 className="search-cta">Search 501(c)(3) charities</h1>
 
-      <form
-        className="search-form"
-        onSubmit={(event) => {
-          event.preventDefault();
-          // getCharities(searchTerm, rating, true); // mock response
-          getCharities(searchTerm, rating); // response from API
-        }}
-      >
-        <label htmlFor="searchTerm">
-          <span className="ada-hidden">Search</span>
-          <input
-            id="searchTerm"
-            className="search-input"
-            value={searchTerm}
-            placeholder="humane society"
-            onChange={(event) => updateSearch(event.target.value)}
-          />
-        </label>
-        <RatingSelect />
-        {/* Prevent submissions if empty search term or if the response is still loading */}
-        <button disabled={loading || searchTerm === ''}>Submit</button>
-      </form>
+        <form
+          className="search-form"
+          onSubmit={(event) => {
+            event.preventDefault();
+            getCharities(searchTerm, rating, true); // mock response
+            // getCharities(searchTerm, rating); // response from API
+          }}
+        >
+          <label htmlFor="searchTerm">
+            <span className="ada-hidden">Search</span>
+            <input
+              id="searchTerm"
+              className="search-input"
+              value={searchTerm}
+              placeholder="humane society"
+              onChange={(event) => updateSearch(event.target.value)}
+            />
+          </label>
+          <RatingSelect />
+          {/* Prevent submissions if empty search term or if the response is still loading */}
+          <button disabled={loading || searchTerm === ''}>Submit</button>
+        </form>
+      </div>
       <Results charities={charities} />
     </div>
   );
