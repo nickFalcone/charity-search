@@ -59,8 +59,8 @@ const Search = () => {
           className="search-form"
           onSubmit={(event) => {
             event.preventDefault();
-            getCharities(searchTerm, rating, true); // mock response
-            // getCharities(searchTerm, rating); // response from API
+            // getCharities(searchTerm, rating, true); // mock response
+            getCharities(searchTerm, rating); // response from API
           }}
         >
           <label htmlFor="searchTerm">
