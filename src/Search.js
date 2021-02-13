@@ -23,7 +23,7 @@ const Search = () => {
    *
    * @param {string} searchTerm - string of text to search
    * @param {number} rating - 1: only return rated charities; 0: return all charities
-   * @param {boolean} [mock=false] - flag to mock API response
+   * @param {boolean} [mock=false] - flag to mock API response (defaults false)
    *
    * @return {Promise} response
    */
@@ -78,7 +78,7 @@ const Search = () => {
           <button disabled={loading || searchTerm === ''}>Submit</button>
         </form>
       </div>
-      <Results charities={charities} />
+      <Results charities={charities} loading={loading} />
     </div>
   );
 };
