@@ -7,6 +7,7 @@ const Search = () => {
   const [searchTerm, updateSearch] = useState('');
   const [charities, setCharities] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [lastSearch, storeSearch] = useState('');
   const [rating, RatingSelect] = useSelect('Rating', 1, [
     {
       key: 'Rated',
@@ -32,6 +33,7 @@ const Search = () => {
     if (mock) {
       setCharities(MOCK);
       setLoading(false);
+      storeSearch('mock');
     } else {
       fetch(
         `https://charity-search-303800.ue.r.appspot.com/?search=${searchTerm}&rated=${rating}`
@@ -45,8 +47,10 @@ const Search = () => {
           (error) => {
             console.error(error);
             setLoading(false);
+            // TODO: Render error component
           }
         );
+      storeSearch(searchTerm);
     }
   }
 
@@ -73,9 +77,19 @@ const Search = () => {
               onChange={(event) => updateSearch(event.target.value)}
             />
           </label>
+          {/* TODO: button to clear input */}
           <RatingSelect />
-          {/* Prevent submissions if empty search term or if the response is still loading */}
-          <button disabled={loading || searchTerm === ''}>Submit</button>
+          {/**
+           * Disable submit button if:
+           * - response is loading
+           * - the search input is empty
+           * - the search term is equal to the last searched (store cached TODO: load response from cache storage?)
+           */}
+          <button
+            disabled={loading || searchTerm === '' || searchTerm === lastSearch}
+          >
+            Submit
+          </button>
         </form>
       </div>
       <Results charities={charities} loading={loading} />
