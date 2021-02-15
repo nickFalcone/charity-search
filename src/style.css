@@ -1,4 +1,4 @@
-html,
+/* html,
 body {
   background-color: #e7e7e7;
   margin: 0;
@@ -8,11 +8,11 @@ body {
 
 html::-webkit-scrollbar {
   display: none;
-}
+} */
 
 /* FONTS */
 
-.search-cta,
+/* .search-cta,
 .charity-name {
   font-family: 'Roboto', sans-serif;
 }
@@ -32,7 +32,7 @@ button {
 
 /* STYLES */
 
-.ada-hidden {
+/* .ada-hidden {
   clip: rect(0 0 0 0);
   clip-path: inset(50%);
   height: 1px;
@@ -122,4 +122,4 @@ footer a {
 
 .spinner-wrap {
   text-align: center;
-}
+} */

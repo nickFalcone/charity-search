@@ -1,5 +1,8 @@
 import React from 'react';
 
+// Primer
+import { Heading, Link, Text } from '@primer/components';
+
 export default function Charity({
   name,
   cause,
@@ -26,17 +29,24 @@ export default function Charity({
   };
 
   return (
-    <a href={website} target="_blank" rel="noreferrer" className="charity-link">
+    <Link
+      href={website}
+      target="_blank"
+      rel="noreferrer"
+      className="charity-link"
+    >
       <div className="charity" id={id}>
-        <h1 className="charity-name">{name}</h1>
-        <h2 className="charity-cause">{cause}</h2>
-        <p className="charity-location">{`${titleCase(
+        <Heading className="charity-name">{name}</Heading>
+        {/* <h1 className="charity-name">{name}</h1> */}
+        <Heading className="charity-cause">{cause}</Heading>
+        {/* <h2 className="charity-cause">{cause}</h2> */}
+        <Text as="p" className="charity-location">{`${titleCase(
           city
-        )}, ${state.toUpperCase()}`}</p>
-        <p className="charity-mission">
+        )}, ${state.toUpperCase()}`}</Text>
+        <Text as="p" className="charity-mission">
           {mission ? mission.replace(/<br>/g, '') : ''}
-        </p>
+        </Text>
       </div>
-    </a>
+    </Link>
   );
 }

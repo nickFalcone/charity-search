@@ -3,6 +3,9 @@ import useSelect from './useSelect';
 import Results from './Results';
 import MOCK from './mock';
 
+// Primer
+import { Button, Heading, TextInput } from '@primer/components';
+
 const Search = () => {
   const [searchTerm, updateSearch] = useState('');
   const [charities, setCharities] = useState([]);
@@ -53,19 +56,21 @@ const Search = () => {
   return (
     <div className="wrap">
       <div className="search">
-        <h1 className="search-cta">Search 501(c)(3) charities</h1>
+        <Heading as="h1" className="search-cta">
+          Search 501(c)(3) charities
+        </Heading>
 
         <form
           className="search-form"
           onSubmit={(event) => {
             event.preventDefault();
-            // getCharities(searchTerm, rating, true); // mock response
-            getCharities(searchTerm, rating); // response from API
+            getCharities(searchTerm, rating, true); // mock response
+            // getCharities(searchTerm, rating); // response from API
           }}
         >
           <label htmlFor="searchTerm">
             <span className="ada-hidden">Search</span>
-            <input
+            <TextInput
               id="searchTerm"
               className="search-input"
               value={searchTerm}
@@ -75,7 +80,7 @@ const Search = () => {
           </label>
           <RatingSelect />
           {/* Prevent submissions if empty search term or if the response is still loading */}
-          <button disabled={loading || searchTerm === ''}>Submit</button>
+          <Button disabled={loading || searchTerm === ''}>Submit</Button>
         </form>
       </div>
       <Results charities={charities} loading={loading} />
