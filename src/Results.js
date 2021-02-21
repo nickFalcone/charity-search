@@ -3,7 +3,6 @@ import Charity from './Charity';
 import Spinner from './Spinner';
 
 const Results = (data) => {
-  console.log(data);
   return (
     <div className="search-results" aria-live="polite">
       <p className="search-results-count">
