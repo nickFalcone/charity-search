@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import useSelect from './useSelect';
 import Results from './Results';
-import MOCK from './mock';
+import MOCK from './mock.json';
 
 const Search = () => {
   const [searchTerm, updateSearch] = useState('');
@@ -64,7 +64,7 @@ const Search = () => {
           onSubmit={(event) => {
             event.preventDefault();
             // getCharities(searchTerm, rating, true); // mock response
-            getCharities(searchTerm, rating); // response from API
+            getCharities(searchTerm, rating, false); // response from API
           }}
         >
           <label htmlFor="searchTerm">
