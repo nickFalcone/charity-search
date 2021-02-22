@@ -28,10 +28,14 @@ const Search = () => {
    *
    * @return {Promise} response
    */
-  async function getCharities(searchTerm, rating, mock) {
+  async function getCharities(
+    searchTerm: React.SetStateAction<string>,
+    rating: number,
+    mock: boolean
+  ): Promise<any> {
     setLoading(true);
     if (mock) {
-      setCharities(MOCK);
+      setCharities(MOCK); // FIXME:
       setLoading(false);
       storeSearch('mock');
     } else {
@@ -63,8 +67,8 @@ const Search = () => {
           className="search-form"
           onSubmit={(event) => {
             event.preventDefault();
-            // getCharities(searchTerm, rating, true); // mock response
-            getCharities(searchTerm, rating, false); // response from API
+            getCharities(searchTerm, rating, true); // mock response
+            // getCharities(searchTerm, rating, false); // response from API
           }}
         >
           <label htmlFor="searchTerm">

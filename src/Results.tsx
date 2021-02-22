@@ -2,6 +2,7 @@ import React from 'react';
 import Charity from './Charity';
 import Spinner from './Spinner';
 // TODO: extract to an interface to prevent duplicate type assertion
+
 const Results = (data: {
   charities: {
     ein: string;
@@ -41,9 +42,6 @@ const Results = (data: {
                   state={charity.mailingAddress.stateOrProvince}
                   website={charity.charityNavigatorURL}
                   id={charity.ein}
-                  // path={`/charity/:${charity.charityName
-                  //   .replace(/\s+/g, '-')
-                  //   .toLowerCase()}`}
                 />
               );
             }
