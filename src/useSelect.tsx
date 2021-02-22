@@ -1,27 +1,20 @@
 import React, { useState } from 'react';
 
-interface useSelectProps {
-  label: string;
-  defaultState: any;
-  options: any[]; // FIXME:
-}
-
-const useSelect: React.FunctionComponent<useSelectProps> = (props) => {
-  const [state, setState] = useState(props.defaultState);
-  const id = `use-select-${props.label.replace(' ', '').toLowerCase()}`;
-
+const useSelect = (label: string, defaultState: string, options: any[]) => {
+  const [state, setState] = useState(defaultState);
+  const id = `use-select-${label.replace(' ', '').toLowerCase()}`;
   const Dropdown = () => (
     <label htmlFor={id} className="rating-group">
-      {props.label}
+      {label}
       <select
         id={id}
         className={id}
         value={state}
         onChange={(event) => setState(event.target.value)}
         onBlur={(event) => setState(event.target.value)}
-        disabled={props.options.length === 0}
+        disabled={options.length === 0}
       >
-        {props.options.map((item) => (
+        {options.map((item) => (
           <option key={item.key} value={item.value}>
             {item.key}
           </option>

@@ -8,14 +8,14 @@ const Search = () => {
   const [charities, setCharities] = useState([]);
   const [loading, setLoading] = useState(false);
   const [lastSearch, storeSearch] = useState('');
-  const [rating, RatingSelect] = useSelect('Rating', 1, [
+  const [rating, RatingSelect] = useSelect('Rating', '1', [
     {
       key: 'Rated',
-      value: 1,
+      value: '1',
     },
     {
       key: 'All',
-      value: 0,
+      value: '0',
     },
   ]);
 
@@ -23,14 +23,14 @@ const Search = () => {
    * Return charities from the Charity Navigator API
    *
    * @param {string} searchTerm - string of text to search
-   * @param {number} rating - 1: only return rated charities; 0: return all charities
-   * @param {boolean} [mock=false] - flag to mock API response (defaults false)
+   * @param {string} rating - 1: only return rated charities; 0: return all charities
+   * @param {boolean} - flag to mock API response (defaults false)
    *
    * @return {Promise} response
    */
   async function getCharities(
-    searchTerm: React.SetStateAction<string>,
-    rating: number,
+    searchTerm: string,
+    rating: string,
     mock: boolean
   ): Promise<any> {
     setLoading(true);
