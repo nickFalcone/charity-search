@@ -35,7 +35,7 @@ const Results = (data: { charities: CharityProps[]; loading: boolean }) => {
       ) : data.loading ? (
         <Spinner />
       ) : (
-        <span></span> // no results
+        <span></span> // TODO: no results component should render if lastSearch !== '' (else, it will show on first load)
       )}
     </div>
   );

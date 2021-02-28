@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import useSelect from './useSelect';
+import ClearButton from './ClearButton';
 import Results from './Results';
 import MOCK from './mock.json';
 
@@ -74,14 +75,17 @@ const Search = () => {
           <label htmlFor="searchTerm">
             <span className="ada-hidden">Search</span>
             <input
+              type="text"
               id="searchTerm"
               className="search-input"
               value={searchTerm}
               placeholder="humane society"
               onChange={(event) => updateSearch(event.target.value)}
+              required
             />
           </label>
-          {/* TODO: button to clear input */}
+          <ClearButton />
+
           <RatingSelect />
           {/**
            * Disable submit button if:
