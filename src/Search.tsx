@@ -73,18 +73,17 @@ const Search = () => {
           }}
         >
           <label htmlFor="searchTerm">
-            <span className="ada-hidden">Search</span>
+            <span className="ada-hidden">Search 501c3 charities</span>
             <input
-              type="text"
               id="searchTerm"
               className="search-input"
               value={searchTerm}
-              placeholder="humane society"
+              placeholder=""
               onChange={(event) => updateSearch(event.target.value)}
-              required
             />
           </label>
-          <ClearButton />
+
+          <ClearButton updateSearch={updateSearch} searchTerm={searchTerm} />
 
           <RatingSelect />
           {/**

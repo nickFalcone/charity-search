@@ -1,11 +1,18 @@
 import React from 'react';
 
-const ClearButton = () => {
+const ClearButton = (props) => {
+  const handleClear = (e) => {
+    e.preventDefault();
+    props.updateSearch('');
+  };
+
   return (
     <button
       className="clear-button"
       aria-label="clear search input"
       type="reset"
+      onClick={handleClear}
+      disabled={props.searchTerm === ''}
     >
       {/* https://icons.getbootstrap.com/icons/x-circle/ */}
       <svg
