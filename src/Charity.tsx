@@ -8,6 +8,8 @@ interface CharityProps {
   id: string;
   city: string;
   state: string;
+  resultIndex: number;
+  totalResults: number;
 }
 
 const Charity: React.FunctionComponent<CharityProps> = (props) => {
@@ -33,8 +35,11 @@ const Charity: React.FunctionComponent<CharityProps> = (props) => {
       className="charity-link"
     >
       <div className="charity" id={props.id}>
-        <h1 className="charity-name">{props.name}</h1>
-        <h2 className="charity-cause">{props.cause}</h2>
+        <span className="screen-reader-context">
+          Result number {props.resultIndex + 1} of {props.totalResults}
+        </span>
+        {props.name ? <h1 className="charity-name">{props.name}</h1> : ''}
+        {props.cause ? <h2 className="charity-cause">{props.cause}</h2> : ''}
         <p className="charity-location">{`${titleCase(
           props.city
         )}, ${props.state.toUpperCase()}`}</p>
@@ -42,6 +47,9 @@ const Charity: React.FunctionComponent<CharityProps> = (props) => {
           {props.mission ? props.mission.replace(/<br>/g, '') : ''}
         </p>
       </div>
+      <span className="screen-reader-context">
+        press enter to visit profile
+      </span>
     </a>
   );
 };

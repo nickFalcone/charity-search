@@ -141,6 +141,16 @@ footer a {
   text-align: center;
 }
 
+/* https://webaim.org/techniques/css/invisiblecontent/ */
+.screen-reader-context {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 /* https://medium.com/cssjunction/how-to-stop-zoom-in-on-input-focus-on-mobile-devices-835edcaa2ba4 */
 @media screen and (max-width: 767px) {
   input,

@@ -36,9 +36,12 @@ const Search = () => {
   ): Promise<any> {
     setLoading(true);
     if (mock) {
-      setCharities(MOCK); // FIXME:
-      setLoading(false);
-      storeSearch('mock');
+      // Allow spinner component to render
+      setTimeout(() => {
+        setCharities(MOCK); // FIXME:
+        setLoading(false);
+        storeSearch('mock');
+      }, 1000);
     } else {
       fetch(
         `https://charity-search-303800.ue.r.appspot.com/?search=${searchTerm}&rated=${rating}`
@@ -68,12 +71,12 @@ const Search = () => {
           className="search-form"
           onSubmit={(event) => {
             event.preventDefault();
-            // getCharities(searchTerm, rating, true); // mock response
-            getCharities(searchTerm, rating, false); // response from API
+            getCharities(searchTerm, rating, true); // mock response
+            // getCharities(searchTerm, rating, false); // response from API
           }}
         >
           <label htmlFor="searchTerm">
-            <span className="ada-hidden">Search 501c3 charities</span>
+            <span className="ada-hidden">Input, Search 501c3 charities</span>
             <input
               id="searchTerm"
               className="search-input"
@@ -87,7 +90,7 @@ const Search = () => {
 
           <RatingSelect />
           {/**
-           * Disable submit button if:
+           * Disable search button if:
            * - response is loading
            * - the search input is empty
            * - the search term is equal to the last searched (store cached TODO: load response from cache storage?)
@@ -95,7 +98,7 @@ const Search = () => {
           <button
             disabled={loading || searchTerm === '' || searchTerm === lastSearch}
           >
-            Submit
+            Search
           </button>
         </form>
       </div>
