@@ -1,13 +1,16 @@
 import React, { useState, useEffect, useContext } from 'react';
 import useSelect from './useSelect';
 import ClearButton from './ClearButton';
+import SearchButton from './SearchButton';
+import Error from './Error';
 import Results from './Results';
-import MOCK from './mock.json';
+import mockResponse from './mock.json';
 
 const Search = () => {
   const [searchTerm, updateSearch] = useState('');
   const [charities, setCharities] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   const [lastSearch, storeSearch] = useState('');
   const [rating, RatingSelect] = useSelect('Rating', '1', [
     {
@@ -22,23 +25,17 @@ const Search = () => {
 
   /**
    * Return charities from the Charity Navigator API
-   *
-   * @param {string} searchTerm - string of text to search
-   * @param {string} rating - 1: only return rated charities; 0: return all charities
-   * @param {boolean} - flag to mock API response (defaults false)
-   *
-   * @return {Promise} response
    */
   async function getCharities(
     searchTerm: string,
     rating: string,
-    mock: boolean
+    mock?: boolean,
+    mockResponse?: Array<Object>
   ): Promise<any> {
     setLoading(true);
     if (mock) {
-      // Allow spinner component to render
       setTimeout(() => {
-        setCharities(MOCK); // FIXME:
+        setCharities(mockResponse);
         setLoading(false);
         storeSearch('mock');
       }, 1000);
@@ -55,7 +52,7 @@ const Search = () => {
           (error) => {
             console.error(error);
             setLoading(false);
-            // TODO: Render error component
+            setError(true);
           }
         );
       storeSearch(searchTerm);
@@ -71,8 +68,9 @@ const Search = () => {
           className="search-form"
           onSubmit={(event) => {
             event.preventDefault();
-            // getCharities(searchTerm, rating, true); // mock response
-            getCharities(searchTerm, rating, false); // response from API
+            // TODO: set mocks a better way
+            // getCharities(searchTerm, rating, true, mockResponse); // mock response success
+            getCharities(searchTerm, rating); // response from API
           }}
         >
           <label htmlFor="searchTerm">
@@ -89,20 +87,16 @@ const Search = () => {
           <ClearButton updateSearch={updateSearch} searchTerm={searchTerm} />
 
           <RatingSelect />
-          {/**
-           * Disable search button if:
-           * - response is loading
-           * - the search input is empty
-           * - the search term is equal to the last searched (store cached TODO: load response from cache storage?)
-           */}
-          <button
-            disabled={loading || searchTerm === '' || searchTerm === lastSearch}
-          >
-            Search
-          </button>
+
+          <SearchButton
+            loading={loading}
+            searchTerm={searchTerm}
+            lastSearch={lastSearch}
+          />
         </form>
       </div>
       <Results charities={charities} loading={loading} />
+      <Error error={error} />
     </div>
   );
 };
