@@ -63,11 +63,13 @@ button {
 
 .search-input {
   width: 67vw;
-  max-width: 600px;
+  max-width: 675px;
   padding: 10px 20px;
   margin: 20px 0;
   border: none;
   border-radius: 25px;
+  border: 1px solid #313131;
+  font-size: 24px;
 }
 
 .search-input:focus {
@@ -87,9 +89,9 @@ button {
 .clear-button {
   border-radius: 50%;
   border: none;
-  width: 24px;
-  height: 24px;
-  margin: 0 0 0 -30px;
+  width: 30px;
+  height: 30px;
+  margin: -5px 0 0 -45px;
   padding: 0;
   cursor: pointer;
   background-color: transparent;
@@ -119,6 +121,12 @@ button {
   background-color: #fff;
   outline: 0;
   box-shadow: 0 0 10px #5d5d5d;
+}
+
+.error {
+  max-width: 675px;
+  text-align: center;
+  color: #ff2c2c;
 }
 
 footer {
